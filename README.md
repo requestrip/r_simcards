@@ -15,8 +15,34 @@ SIM system for npwd phone by requestrip
 ## Download & Installation
 1. Download & Extract the .zip or Open the .zip.
 2. Import the included SQL file to your database.
-3. Edit the `config.lua` if you'd like to.
-4. Add `ensure r_simcards` to your `server.cfg`.
+3. Add "sim_card" item to your ox_inventory
+```
+['sim_card'] = {
+	label = 'Sim Card',
+	weight = 10,
+	stack = false,
+	close = true,
+	description = nil,
+	consume = 0,
+	client = {
+		remove = function()
+			exports['r_simcards']:checkSim()
+		end,
+		add = function()
+			exports['r_simcards']:checkSim()
+		end,
+	},
+	server = {
+		export = 'r_simcards.sim_card',
+		metadata = {
+            number = nil,
+			ssn = nil
+        }
+	},
+},
+```
+4. Edit the `config.lua` if you'd like to.
+5. Add `ensure r_simcards` to your `server.cfg`.
 
 ## Known Bugs/Issues
 * None for now
